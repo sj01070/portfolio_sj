@@ -1,0 +1,778 @@
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NotosansCJK', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    display: flex; 
+}
+
+/* 1. 좌측 고정 사이드바 */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 50px 30px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #f0f0f0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.logo {
+    margin-bottom: 32px; 
+}
+
+.logo img {
+    width: 120px; 
+    height: auto;     
+    display: block;  
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+}
+
+.menu a:hover, .menu a.active {
+    color: #111;
+}
+
+/* [PC 버전] LNB 내부 SNS 아이콘 영역 */
+.sidebar-sns {
+    position: fixed;
+    bottom: 80px; /* 카피라이트위에 오도록 높이 지정 */
+    left: 30px;
+    display: flex;
+    gap: 10px;    /* 다른 페이지와 동일한 아이콘 간격 */
+    z-index: 106;
+}
+
+.sidebar-sns a {
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* SNS 아이콘 크기 제어 */
+.sidebar-sns img {
+    width: 25px;  /* 다른 페이지와 동일한 아이콘 크기 */
+    height: 25px;
+    object-fit: contain;
+    display: block;
+}
+
+/* 데스크톱 화면일 때 좌측 LNB 바닥에 카피라이트 강제 고정 */
+.copyright {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 180px;
+    z-index: 105;
+    font-size: 0.75rem;
+    color: #ccc;
+    line-height: 1.4;
+    text-align: left;
+    border-top: none;
+    margin-top: 0;
+    padding: 0;
+}
+
+/* 2. 우측 메인 콘텐츠 영역 */
+.content-area {
+    margin-left: 240px; /* 사이드바 너비만큼 왼쪽 여백 확보 */
+    flex: 1;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-banner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 왼쪽부터 차례대로 배치 */
+    width: 100%;
+    max-width: 1200px; /* 하단 섹션들과 가로폭 정렬선 완벽 매칭 */
+    margin: 0 auto;    /* 중앙 정렬 */
+    padding: 60px 60px 80px 60px;  /* 하단 섹션들과 좌우 패딩(60px) 일치 */
+    position: relative;
+}
+
+.about-text {
+    font-size: 24px; 
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #000;
+}
+
+.contact-text {
+    font-size: 16px; 
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #000;
+}
+
+
+
+/* 하단 텍스트 정보 구역 */
+.work-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+
+/* 공통 섹션 태그 스타일 (ABOUT, RECENT WORK 등) */
+.section-tag {
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    color: #000;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* RECENT WORK 섹션 및 그리드 전체 컨테이너 */
+.contact-section {
+    padding: 50px 60px;
+    max-width: 1200px;
+}
+
+
+/* 모달 애니메이션 및 기본 폼 유지 */
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 3. 반응형 레이아웃 처리 (화면 너비 900px 이하 모바일/태블릿) */
+
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 40px 20px 25px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        justify-content: center;
+    }
+
+    .logo {
+        margin-bottom: 15px !important;
+        text-align: center;
+    }
+
+    .logo h2 {
+        margin-bottom: 0 !important;
+        text-align: center !important;
+    }
+
+    .menu {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 5px;
+        gap: 20px;
+    }
+
+    .content-area {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .main-banner {
+        flex-direction: column-reverse; 
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .banner-img {
+        width: 100%;
+    }
+
+    .banner-img img {
+        aspect-ratio: 16 / 9; 
+    }
+
+    .banner-content {
+        margin-right: 0 !important;   
+        width: 100% !important;       
+        text-align: left;
+        margin-top: 15px !important;  
+    }
+
+    /* 🛠️ [모바일 마진 해결] 새롭게 바뀐 .contact-section의 좌우 정렬선을 완벽 동기화 */
+    .contact-section {
+        padding: 40px 20px !important;
+    }
+
+    .about-section {
+        padding: 40px 20px !important;
+    }
+
+    .about-container, .modal-body {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-img-placeholder {
+        width: 100% !important;
+        max-width: 300px;
+        margin: 0 auto; 
+    }
+
+    .features-section {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;    
+        gap: 30px;              
+        padding: 40px 20px !important;
+    }
+
+    .feature-item {
+        width: 100%;
+        max-width: 280px;       
+        text-align: center;
+    }
+
+    .feature-item img {
+        width: 150px !important;  
+        height: 150px !important; 
+        object-fit: contain;     
+        display: block;
+        margin: 0 auto 10px auto; 
+    }
+
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+        row-gap: 40px;
+    }
+
+    .feature-item {
+        width: 100%;                  
+        max-width: 200px;             
+    }
+
+    .mobile-footer {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-sns {
+        position: static;
+        justify-content: center;
+    }
+
+    /* 모바일 화면일 때 데스크톱 고정을 풀고 본문 최하단 중앙에 안착 */
+    .copyright {
+        position: relative !important; 
+        bottom: auto !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 20px auto 0 auto !important; 
+        text-align: center !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        border-top: 1px solid #e5e5e5 !important; 
+    }
+} /* ◀ 900px 미디어 쿼리 괄호 완전 폐쇄 */
+
+/* 4. 완전한 스마트폰 모바일 레이아웃 (화면 너비 600px 이하) */
+@media (max-width: 600px) {
+    .work-grid {
+        grid-template-columns: 1fr; /* 무조건 1열 정렬 */
+        row-gap: 35px;
+    }
+    .work-section {
+        padding: 40px 20px;
+    }
+}
+
+/* ======================================================
+   CONTACT PAGE: CSS-only sticky content transitions
+   Uses only the contact-sticky-* classes in contact.html.
+   Existing LNB, logo, common .section-tag, and footer styles remain.
+====================================================== */
+
+/* The original .contact-section keeps its 60px horizontal padding
+   and 1200px max width. This wrapper only defines the scroll track. */
+.content-area > .contact-section.contact-sticky-section {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.contact-scroll-track {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+}
+
+.contact-sticky-stage {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    background: #fff;
+}
+
+/* Always-visible Introduction */
+.contact-sticky-intro {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    padding: 0 0 28px;
+    background: #fff;
+}
+
+.contact-sticky-intro > .section-tag {
+    margin-bottom: 30px;
+}
+
+.contact-intro-copy {
+    width: 100%;
+    max-width: 1050px;
+}
+
+.contact-intro-copy h3 {
+    margin: 0 0 16px;
+    color: #111;
+    font-size: clamp(26px, 2.5vw, 36px);
+    font-weight: 500;
+    line-height: 1.5;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.contact-intro-copy p {
+    max-width: 850px;
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.9;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* Changing content region: visible in normal-flow fallback */
+.contact-sticky-scenes {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    background: #fff;
+}
+
+.contact-sticky-panel {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    min-height: 65vh;
+    padding: 36px 0 50px;
+    color: #111;
+    background: #fff;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+}
+
+.contact-scene-content {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.contact-scene-content h2 {
+    margin: 0 0 36px;
+    color: #111;
+    font-size: clamp(30px, 3.5vw, 46px);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.contact-scene-content h3 {
+    margin: 0 0 8px;
+    color: #111;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.contact-scene-content p {
+    margin: 6px 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* Experience */
+.contact-info-row {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid #ddd;
+}
+
+.contact-info-row > span {
+    color: #777;
+    font-size: 13px;
+}
+
+.contact-project-row > span {
+    color: #888;
+    font-size: 13px;
+}
+
+/* Contact links */
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.contact-links a {
+    padding-bottom: 6px;
+    color: #111;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.contact-links a:hover {
+    opacity: .6;
+}
+
+/* Desktop: keep Introduction fixed and transition only the panels */
+@supports (animation-timeline: scroll(root block)) and
+          (animation-range: 0% 100%) {
+
+    .content-area > .contact-section.contact-sticky-section {
+        height: 400vh;
+    }
+
+    .contact-scroll-track {
+        height: 100%;
+        min-height: 400vh;
+    }
+
+    .contact-sticky-stage {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        min-height: 560px;
+        overflow: visible;
+    }
+
+    .contact-sticky-intro {
+        flex: 0 0 auto;
+        padding: 0 0 26px;
+        background: #fff;
+    }
+
+    .contact-sticky-scenes {
+        position: relative;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .contact-sticky-panel {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        padding: 42px 12px 30px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        overflow-y: auto;
+        overscroll-behavior-y: auto;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: scroll(root block);
+    }
+
+    /* 1. Experience */
+    .contact-panel-experience {
+        z-index: 1;
+        animation-name: contact-experience-state;
+        animation-range: 0% 35%;
+    }
+
+    /* 2. Selected Projects */
+    .contact-panel-projects {
+        z-index: 2;
+        animation-name: contact-projects-state;
+        animation-range: 22% 57%;
+    }
+
+    /* 3. Education */
+    .contact-panel-education {
+        z-index: 3;
+        animation-name: contact-education-state;
+        animation-range: 50% 80%;
+    }
+
+    /* 4. Contact */
+    .contact-panel-contact {
+        z-index: 4;
+        animation-name: contact-contact-state;
+        animation-range: 75% 100%;
+    }
+
+    /* Experience animation */
+    @keyframes contact-experience-state {
+        0% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        80% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Selected Projects animation */
+    @keyframes contact-projects-state {
+        0% {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(12px);
+        }
+
+        6% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        88% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Education animation */
+    @keyframes contact-education-state {
+        0% {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(12px);
+        }
+
+        6% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        88% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Contact animation */
+    @keyframes contact-contact-state {
+        0% {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(12px);
+        }
+
+        6% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Mobile/tablet: revert to a normal vertical page, as in the original CSS */
+@media (max-width: 900px) {
+    .content-area > .contact-section.contact-sticky-section {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        padding: 40px 20px !important;
+    }
+
+    .contact-scroll-track {
+        height: auto;
+        min-height: 0;
+    }
+
+    .contact-sticky-stage {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+
+    .contact-sticky-intro {
+        padding: 0 0 28px;
+    }
+
+    .contact-intro-copy h3 {
+        font-size: 27px;
+    }
+
+    .contact-sticky-scenes {
+        position: relative;
+        overflow: visible;
+    }
+
+    .contact-sticky-panel {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 36px 0 44px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        animation: none;
+    }
+
+    .contact-info-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+/* Explicit desktop positioning for fixed LNB footer and social icons.
+   These elements are siblings of main, not descendants of clipped sticky panels. */
+@media (min-width: 901px) {
+    .copyright {
+        position: fixed;
+        bottom: 20px;
+        left: 30px;
+        top: auto;
+        width: 180px;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        border-top: none;
+        z-index: 105;
+    }
+
+    .sidebar-sns {
+        position: fixed;
+        left: 30px;
+        bottom: 80px;
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        z-index: 106;
+    }
+
+    .sidebar-sns a {
+        display: inline-block;
+    }
+
+    .sidebar-sns img {
+        display: block;
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+    }
+}

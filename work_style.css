@@ -1,0 +1,352 @@
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NotosansCJK', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    display: flex; /* 좌측 메뉴와 우측 본문을 가로 배치 */
+}
+
+/* 1. 좌측 고정 사이드바 */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 50px 30px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #f0f0f0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+/* 데스크톱 로고 아래 스타일 */
+.logo {
+    margin-bottom: 32px; 
+}
+
+.logo img {
+    width: 120px; 
+    height: auto;     
+    display: block;  
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+}
+
+.menu a:hover, .menu a.active {
+    color: #111;
+}
+
+/* [PC 버전] LNB 내부 SNS 아이콘 영역 */
+.sidebar-sns {
+    position: fixed;
+    bottom: 80px; /* 카피라이트위에 오도록 높이 지정 */
+    left: 30px;
+    display: flex;
+    gap: 15px;    /* 아이콘 사이의 간격 */
+    z-index: 106;
+}
+
+.sidebar-sns {
+    position: fixed;
+    bottom: 80px; /* 카피라이트위에 오도록 높이 지정 */
+    left: 30px;
+    display: flex;
+    gap: 10px;    /* 아이콘 사이의 간격 */
+    z-index: 106;
+}
+
+.sidebar-sns a {
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* SNS 아이콘 크기 제어 */
+.sidebar-sns img {
+    width: 25px; 
+    height: 25px;
+    object-fit: contain;
+    display: block;
+}
+
+/* 데스크톱 화면일 때 좌측 LNB 바닥에 카피라이트 강제 고정 */
+.copyright {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 180px;
+    z-index: 105;
+    font-size: 0.75rem;
+    color: #ccc;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* 2. 우측 메인 콘텐츠 영역 */
+.content-area {
+    margin-left: 240px; /* 사이드바 너비만큼 왼쪽 여백 확보 */
+    flex: 1;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 카테고리 필터 전체 바 */
+.category-filter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+/* 개별 필터 버튼 스타일 */
+.filter-btn {
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    transition: color 0.3s, font-weight 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    color: #111;
+    font-weight: regular;
+}
+
+/* 공통 섹션 태그 스타일 (ABOUT, RECENT WORK 등) */
+.section-tag {
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    color: #333;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* RECENT WORK 섹션 및 그리드 전체 컨테이너 */
+.work-section {
+    padding: 50px 60px;
+    max-width: 1200px;
+}
+
+/* 3열 정렬 레이아웃 */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 50px;
+    margin-bottom: 40px;
+}
+
+/* 카드 전체 묶음 상자 */
+.work-card-container {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* 카드 움직임
+.work-card-container:hover {
+    transform: translateY(-5px);
+} */
+
+/* 정사각형 작품 이미지 영역 */
+.work-card-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #e5e5e5;
+    margin-bottom: 20px;
+    object-fit: cover;
+    display: block;
+}
+
+/* 하단 텍스트 정보 구역 */
+.work-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+/* 태그, 제목, 설명 스타일 */
+.work-card-tag {
+    font-size: 0.75rem;
+    color: #999999;
+    font-weight: normal;
+}
+
+.work-card-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+}
+
+.work-card-desc {
+    font-size: 0.85rem;
+    color:#4e4e4e;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+
+/* 페이지 상단 이동 버튼 */
+.top-button {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+   display: inline-block;
+    background-color: #fff;
+    border: 1px solid #333;
+    color: #333;             
+    padding: 10px 15px;      
+    text-decoration: none;
+    border-radius: 8px;      
+    font-size: 0.75rem;       
+    font-weight: normal;     
+    letter-spacing: 2px;     
+    transition: all 0.3s ease;
+}
+
+.top-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+
+
+
+
+/* 모달 애니메이션 및 기본 폼 유지 */
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 3. 반응형 레이아웃 처리 (화면 너비 900px 이하 모바일/태블릿) */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+
+    /* 모바일 상단 바 형태로 체질 변경 및 완벽한 중앙 정렬 */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 40px 20px 25px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        justify-content: center;
+    }
+
+    /* 로고 마진 완벽 무력화 및 타이트한 15px 정렬 */
+    .logo {
+        margin-bottom: 15px !important;
+        text-align: center;
+    }
+
+    /* 메뉴 가로 배열 및 중앙 정렬 */
+    .menu {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 5px;
+        gap: 20px;
+    }
+
+    /* 우측 본문 영역 여백 초기화 */
+    .content-area {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    /* 태블릿 화면 2열 배치 */
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+        row-gap: 40px;
+    }
+
+    .mobile-footer {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-sns {
+        position: static;
+        justify-content: center;
+    }
+
+    /* 모바일 화면일 때 데스크톱 고정을 풀고 본문 최하단 중앙에 안착 */
+  .copyright {
+        position: relative !important; 
+        bottom: auto !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 60px auto 0 auto !important; 
+        text-align: center !important;
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        border-top: 1px solid #e5e5e5 !important; 
+    }
+    /* 상단이동 모바일 */
+    .top-button {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+/* 4. 완전한 스마트폰 모바일 레이아웃 (화면 너비 600px 이하) */
+@media (max-width: 600px) {
+    .work-grid {
+        grid-template-columns: 1fr; /* 무조건 1열 정렬 */
+        row-gap: 35px;
+    }
+    .work-section {
+        padding: 40px 20px;
+    }
+}

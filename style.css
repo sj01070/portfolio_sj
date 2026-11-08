@@ -1,0 +1,682 @@
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NotosansCJK', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    display: flex; 
+}
+
+/* 1. 좌측 고정 사이드바 */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 50px 30px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #f0f0f0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.logo {
+    margin-bottom: 32px; 
+}
+
+.logo img {
+    width: 120px; 
+    height: auto;     
+    display: block;  
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+}
+
+.menu a:hover, .menu a.active {
+    color: #111;
+}
+
+/* [PC 버전] LNB 내부 SNS 아이콘 영역 */
+.sidebar-sns {
+    position: fixed;
+    bottom: 80px; /* 카피라이트위에 오도록 높이 지정 */
+    left: 30px;
+    display: flex;
+    gap: 10px;    /* 아이콘 사이의 간격 */
+    z-index: 106;
+}
+
+.sidebar-sns a {
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* SNS 아이콘 크기 제어 */
+.sidebar-sns img {
+    width: 25px; 
+    height: 25px;
+    object-fit: contain;
+    display: block;
+}
+
+/* 데스크톱 화면일 때 좌측 LNB 바닥에 카피라이트 강제 고정 */
+.copyright {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 180px;
+    z-index: 105;
+    font-size: 0.75rem;
+    color: #ccc;
+    line-height: 1.4;
+    text-align: left;
+    border-top: none;
+    margin-top: 0;
+    padding: 0;
+}
+
+/* 2. 우측 메인 콘텐츠 영역 */
+.content-area {
+    margin-left: 240px; /* 사이드바 너비만큼 왼쪽 여백 확보 */
+    flex: 1;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+
+.main-banner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 왼쪽부터 차례대로 배치 */
+    width: 100%;
+    max-width: 1200px; /* 하단 섹션들과 가로폭 정렬선 완벽 매칭 */
+    margin: 0 auto;    /* 중앙 정렬 */
+    padding: 60px 60px 80px 60px;  /* 하단 섹션들과 좌우 패딩(60px) 일치 */
+    position: relative;
+}
+
+/* 배너 왼쪽 텍스트 콘텐츠 영역 (이미지 위로 겹쳐지게 수정) */
+.banner-content {
+    flex: 1.1;             
+    position: relative;    
+    z-index: 5;            
+    margin-right: -120px;  
+    pointer-events: none;  
+    margin-top: -138px; /* 문장만 독자적으로 위아래 이동 시키고 싶을 때 조절하세요 */
+}
+
+/* 글자 영역 내부의 링크 버튼은 클릭이 되어야 하므로 다시 복구 */
+.banner-content .category,
+.banner-content h1,
+.banner-content .description,
+.btn-contact {
+    pointer-events: auto;
+    margin-right: 5px;
+}
+
+.banner-content .category {
+    font-size: 16px;
+    font-weight: normal;
+    color: #111;
+}
+
+.banner-content h1 {
+    font-size: 42px; 
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #333;
+     /* -webkit-text-stroke: 1px #999 이미지 위에서 글씨가 잘 보이도록 외각선 */
+}
+
+.banner-content .description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    color: #333;
+    max-width: 450px; /* 글자가 너무 길게 늘어져 이미지를 다 가리지 않도록 제한 */
+}
+
+.btn-contact {
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #333;
+    color: #333;             
+    padding: 12px 35px;      
+    text-decoration: none;
+    border-radius: 8px;      
+    font-size: 0.75rem;       
+    font-weight: normal;     
+    letter-spacing: 2px;     
+    transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* 배너 오른쪽 이미지 영역 */
+.banner-img {
+    flex: 1;              /* 텍스트 영역과 유연하게 공간 분할 */
+    width: 100%;
+    position: relative;
+    z-index: 1;           /* 텍스트 뒤쪽 배경 레이어로 배치 */
+}
+
+/* 꽉 차는 이미지 설정 */
+.banner-img img {
+    width: 100%;
+    aspect-ratio: 1 / 1.1; /* 정사각형보다 세로가 살짝 더 긴 황금 비율 */
+    object-fit: cover;     /* 공백 없이 지정된 비율 상자 안에 꽉 채움 */
+    object-position: center; 
+    display: block;
+}
+
+
+/* 공통 섹션 태그 스타일 */
+.section-tag {
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    color: #333;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* ABOUT 섹션 레이아웃 */
+.about-section {
+    padding: 50px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.about-img-placeholder {
+    width: 300px;
+    height: 300px;
+    background-color: #e5e5e5;
+    flex-shrink: 0;
+}
+
+.about-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch; 
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.about-text p {
+    font-size: 0.95rem;
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* 공통 READ MORE 링크 스타일 */
+.read-more-btn {
+    display: block; 
+    margin-left: auto;
+    width: fit-content;
+    font-size: 0.75rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #333;
+    text-decoration: none;
+    padding-bottom: 4px;
+    transition: opacity 0.3s;
+    margin-top: auto;
+}
+
+.about-footer {
+    text-align: right;
+    margin-top: 20px; 
+}
+
+.read-more-btn:hover {
+    opacity: 0.6;
+}
+
+/* 3열 서비스/아이콘 섹션 */
+.tools-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 60px;
+    box-sizing: border-box;
+}
+
+/* PC : 3열 */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Tablet : 2열 */
+@media screen and (max-width: 1024px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile : 1열 */
+@media screen and (max-width: 767px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .tool-card {
+        width: 100%;
+    }
+}
+
+.tool-card {
+    min-width: 0;
+    padding: 25px;
+    border-radius: 10px;
+    background: #FFF;
+    border:1px solid #333;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    
+}
+
+.tool-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+}
+
+.tool-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tool-info {
+    padding-top: 18px;
+    color:#333;
+}
+
+.tool-info h3 {
+    font-size: 24px;
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.tool-info p {
+    font-size: 13px;
+    line-height: 1.5;
+    color:#333;
+    margin-top: 20px;
+}
+
+/* RECENT WORK 섹션 및 그리드 */
+.work-section {
+    padding: 80px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 30px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.work-card {
+    width: 100%;
+    min-width: 0;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* 이미지 크기 고정 영역 */
+.work-card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 이미지 자체 크기 제한 */
+.work-card-image .work-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 설명 영역 */
+.work-card-info {
+    padding-top: 16px;
+}
+
+.work-card-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #333;
+}
+
+.work-card-info p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4e4e4e;
+    margin: 0;
+}
+
+.work-card:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.work-footer {
+    text-align: right;
+}
+
+/* 3. 이미지 확대 설명창 오버레이 (모달) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 4px;
+    position: relative;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #111;
+}
+
+.modal-body {
+    display: flex;
+    gap: 30px;
+}
+
+.modal-img-container {
+    flex: 1.2;
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.modal-desc {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-desc h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.modal-desc p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 4. 모바일/태블릿 반응형 레이아웃 처리 */
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 3. 반응형 레이아웃 처리 (화면 너비 900px 이하 모바일/태블릿) */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+
+    /* 모바일 상단 바 형태로 체질 변경 중앙 정렬 */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 40px 20px 25px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        justify-content: center;
+    }
+
+    /* 로고 마진 무력화 및 타이트한 15px 정렬 */
+    .logo {
+        margin-bottom: 15px !important;
+        text-align: center;
+    }
+
+
+    /* 메뉴 가로 배열 및 중앙 정렬 */
+    .menu {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 5px;
+        gap: 20px;
+    }
+
+    /* 우측 본문 영역 여백 초기화 */
+    .content-area {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    /* 메인 히어로 배너 반응형 - 세로 배치 및 여백 조정 */
+    .main-banner {
+        flex-direction: column-reverse; 
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .banner-img {
+        width: 100%;
+    }
+
+    .banner-img img {
+        aspect-ratio: 16 / 9; /* 모바일 전용 와이드 비율 */
+    }
+
+    /* 배너 텍스트 독립 제어 - 웹 버전 간섭 제거 */
+    .banner-content {
+        margin-right: 0 !important;   
+        width: 100% !important;       
+       text-align: center;
+        margin-top: 15px !important; /* 모바일 전용 상단 여백 */
+
+    }
+
+    .banner-content .description {
+    display: block !important;
+    width: max-content !important;        
+    max-width: fit-content !important; 
+    min-width: 0 !important;              /* 기존 고정 최소너비 해제 */
+    
+    /* 박스 자체를 화면 정가운데로 정렬 */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    }
+
+
+    /* ABOUT 및 모달 바디 세로 정렬 */
+    .about-container, .modal-body {
+        flex-direction: column;
+    }
+
+    /* 서비스 아이콘 섹션 3개 1열 수직 배열 완전 격리 */
+    .features-section {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;    
+        gap: 30px;              
+    }
+
+    .feature-item {
+        width: 100%;
+        max-width: 280px;       
+        text-align: center;
+    }
+
+    .feature-icon img,
+    .feature-item img {
+        width: 150px !important;  
+        height: 150px !important; 
+        object-fit: contain;     
+        display: block;
+        margin: 0 auto 10px auto; 
+    }
+
+    /* 태블릿 화면 2열 배치 및 카드 유연성 확보 */
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+        row-gap: 40px;
+    }
+
+    .feature-item {
+        width: 100%;                  
+        max-width: 200px;             
+    }
+
+    .mobile-footer {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-sns {
+        position: static;
+        justify-content: center;
+    }
+
+
+    /* 모바일 화면일 때 데스크톱 고정을 풀고 본문 최하단 중앙에 안착 */
+    .copyright {
+        position: relative !important; 
+        bottom: auto !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 20px auto 0 auto !important; 
+        text-align: center !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        border-top: 1px solid #f0f0f0 !important; 
+    }
+} /* ◀ 900px 미디어 쿼리 끝 괄호 */
+
+/* 4. 스마트폰 모바일 레이아웃 (화면 너비 600px 이하)*/
+@media (max-width: 600px) {
+    .work-grid {
+        grid-template-columns: 1fr; /* 무조건 1열 정렬 */
+        row-gap: 35px;
+    }
+    .work-section {
+        padding: 40px 20px;
+    }
+}
+
+/* 모바일: AREAS OF EXPERTISE와 SELECTED WORKS 정렬 통일 */
+@media (max-width: 600px) {
+    .tools-section {
+        padding: 40px 20px;
+    }
+}

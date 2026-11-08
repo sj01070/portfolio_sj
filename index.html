@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEESUJIN | HOME</title>
+    <link rel="stylesheet" href="style.css">
+   <link rel="icon" href="/images/pabicon.png" type="파비콘">
+
+</head>
+<body>
+
+    <!-- 좌측 고정 네비게이션 바 -->
+   <aside class="sidebar">
+        <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="로고">
+        </a>
+    </div>
+         <nav class="menu">
+            <a href="index.html">HOME</a>
+            <a href="work.html">WORK</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </aside>
+
+    <!-- 우측 메인 콘텐츠 영역 (홈화면 전용 콘텐츠) -->
+    <main class="content-area">
+        
+      <!-- 상단 대형 배너 -->
+<section class="main-banner">
+    <!-- 모바일에서 순서를 바꾸기 위해 이미지 영역을 위에 배치하거나, CSS flex-direction을 활용합니다 -->
+    <div class="banner-content">
+        <p class="category">UI/UX · B2B SaaS · Dash board</p>
+        <h1>Making complex workflows easier to navigate.</h1><br>
+        <p class="description">다양한 산업의 복잡한 데이터 정보를 쉽게 이해하고 사용자의 경험을 고민하여 목적에 맞는 직관적인 인터페이스 설계를 목표로 <br>화면의 시각적 완성도뿐 아니라 정보의 위계, 사용자의 업무 흐름, UI의 일관성이 조화롭게 구성하여
+업무의 효율성이 보다 향상 될 수 있도록 함께 고민합니다.</p><br>
+        <a href="contact.html" class="btn-contact">CONTACT  &rarr;</a>
+    </div>
+    <div class="banner-img">
+        <img src="images/IMG_6161.jpeg" alt="Visual Designer Profile">
+    </div>
+</section>
+
+
+        <!-- 3열 서비스/특징 섹션 -->
+       <section class="tools-section">
+
+    <span class="section-tag">AREAS OF EXPERTISE</span>
+
+    <div class="tools-grid">
+
+        <div class="tool-card">
+            <div class="tool-image">
+                <img src="images/Dashboard_Data_Visualization.png" alt="Dashboard_Data_Visualization">
+            </div>
+            <div class="tool-info">
+                <h3>01. Dashboard & Data Visualization</h3>
+                <p>복잡한 데이터와 실시간 상태 정보를 시각화하여 주요 현황과 변화를 직관적으로 파악할 수 있는 대시보드 화면을 설계</p>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-image">
+            <img src="images/Admin_Workflow_Design.png" alt="Admin_Workflow_Design">
+            </div>
+            <div class="tool-info">
+                <h3>02. Admin & Workflow Design</h3>
+                <p>사용자 경험과 업무의 특성을 고려하여 정보 탐색, 데이터 관리 및 작업을 효율적으로 진행할 수 있는 인터페이스 설계</p>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-image">
+                <img src="images/Design_System_UI_Consistency.png" alt="Design_System_UI_Consistency">
+            </div>
+            <div class="tool-info">
+                <h3>03. Design System & UI Consistency</h3>
+                <p>화면 공통의 UI 규칙을 세우고 재사용 가능한 컴포넌트를 통해 다양한 화면에서도 일관성있는 디자인을 고려한 UI 설계</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- RECENT WORK 요약 섹션 -->
+        <section class="work-section">
+            <span class="section-tag">SELECTED WORKS</span>
+            
+            <!-- 3열 그리드 레이아웃 (클릭 시 새로 만든 폴더 안의 상세 페이지로 이동) -->
+<div class="work-grid">
+    
+    <!-- 작품 1 --> 
+<div class="work-card" onclick="location.href='project/Cybersecurity.html'">
+
+    <div class="work-card-image">
+        <img class="work-card-img"src="images/보안_표지.png"alt="AI_사이버보안_썸네일">
+    </div>
+
+    <div class="work-card-info">
+        <h4>AI 사이버보안 플랫폼</h4>
+        <p> 분산된 정보를 통합하여 사용자가 이해하고 판단할 수 있도록 돕고, 사건조사부터 사용자가 승인까지 연결한 AI기반 사이버보안 플랫폼</p>
+    </div>
+
+</div>
+
+
+     <!-- 작품 2 -->
+    <div class="work-card" onclick="location.href='project/Workspac.html'">
+
+        <div class="work-card-image">
+            <img class="work-card-img" src="images/AI_업무관리_표지.png" alt="AI_업무관리_썸네일">
+        </div>
+
+        <div class="work-card-info">
+            <h4>AI기반 업무 관리 엔터프라이스</h4>
+            <p>프로젝트 관리를 하나로 연결하여 업무의 시작부터 끝가지 자연스럽게 연결되는 업무경험을 경험할 수 있는 AI기반 엔터프라이즈</p>
+        </div>
+
+    </div>
+    
+    <!-- 작품 3 -->
+    <div class="work-card" onclick="location.href='project/Planning.html'">
+
+        <div class="work-card-image">
+            <img class="work-card-img" src="images/플래너_표지.png" alt="플래너_썸네일">
+        </div>
+
+        <div class="work-card-info">
+            <h4>개인 맞춤형 일정관리 플래너</h4>
+            <p>AI가 사용자의 일정과 작업 패턴을 분석하여 계획을 제안하고, 웹과 모바일 어디에서나 유연하게 활용할 수 있는 일정관리 서비스</p>
+        </div>
+
+    </div>
+
+    
+    <!-- 작품 4 -->
+ <div class="work-card" onclick="location.href='project/SK.html'">
+
+        <div class="work-card-image">
+            <img class="work-card-img" src="images/sk_썸네일.png" alt="SK단말관리시스템_썸네일">
+        </div>
+
+        <div class="work-card-info">
+            <h4>SK Broadband TAMS 홈페이지 리뉴얼</h4>
+            <p>기존 화면의 무거운 인상을 가벼운 이미지로 개선하고 브랜드에 맞춘 색상과 레이아웃으로 배치하여 정돈한 홈페이지 리뉴얼 프로젝트</p>
+        </div>
+
+    </div>
+    
+    
+    <!-- 작품 5 -->
+ <div class="work-card" onclick="location.href='project/KT.html'">
+
+        <div class="work-card-image">
+            <img class="work-card-img" src="images/kt_썸네일.png" alt="kt_썸네일">
+        </div>
+
+        <div class="work-card-info">
+            <h4>Kt 기업무선 관제플랫폼</h4>
+            <p>실시간 데이터 수집, 분석을 통해 시설을 통합적으로 운영할 수 있는 개인 맞춤 확장형 관제 플랫폼 프로젝트</p>
+        </div>
+
+    </div>
+    
+    <!-- 작품 6 -->
+     <div class="work-card" onclick="location.href='project/KOIPA.html'">
+
+        <div class="work-card-image">
+            <img class="work-card-img" src="images/코트라_썸네일.png" alt="코트라_썸네일">
+        </div>
+
+        <div class="work-card-info">
+            <h4>2023 IP Forum 홍보포스터</h4>
+            <p>미국에 진출 준비 및 진출 중인 한국기업의 지식재산 관리 사업을 돕기 위한 홍보 포스터디자인</p>
+        </div>
+
+    </div>
+
+</div>
+
+            <div class="work-footer">
+                <!-- 클릭 시 독립된 새 페이지(work.html)로 이동 -->
+                <a href="work.html" class="read-more-btn">READ MORE &rarr;</a>
+            </div>
+        </section>
+
+        <div class="copyright">
+      <!-- SNS 아이콘 링크 구역 -->
+     <div class="mobile-footer">
+    <div class="sidebar-sns">
+        <a href="https://www.behance.net/sulee07" target="_blank" title="Behance">
+            <img src="images/Behance.png" alt="Behance">
+        </a>
+        <a href="https://www.linkedin.com/in/sulee07/" target="_blank" title="LinkedIn">
+            <img src="images/linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="mailto:sj.0107010@gmail.com" class="email-button">
+            <img src="images/email.png" alt="Email">
+        </a>
+    </div>
+    </div>
+
+             <p>&copy; 2026 Leesujin. All rights reserved.</p>
+        </div>
+    </main>
+
+    <!-- 이미지 확대 및 설명창 오버레이 (모달) -->
+    <div id="workModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modalImg" src="" alt="작품 크게 보기">
+                </div>
+                <div class="modal-desc">
+                    <h3 id="modalTitle">작품 제목</h3>
+                    <p id="modalText">작품 설명</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 제어용 간단한 스크립트 -->
+    <script>
+        function openModal(title, description, imgSrc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = description;
+            document.getElementById('modalImg').src = imgSrc;
+            
+            const modal = document.getElementById('workModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 뒷배경 스크롤 방지
+        }
+
+        function closeModal(event) {
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-btn')) {
+                const modal = document.getElementById('workModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // 스크롤 복원
+            }
+        }
+    </script>
+</body>
+</html>

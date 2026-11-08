@@ -1,0 +1,365 @@
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NotosansCJK', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    display: flex;
+}
+
+/* 1. 좌측 고정 사이드바 */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 50px 30px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #f0f0f0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.logo {
+    margin-bottom: 32px; 
+}
+
+.logo img {
+    width: 120px; 
+    height: auto;     
+    display: block;  
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #111;
+}
+
+/* [PC 버전] LNB 내부 SNS 아이콘 영역 */
+.sidebar-sns {
+    position: fixed;
+    bottom: 100px; /* 카피라이트위에 오도록 높이 지정 */
+    left: 30px;
+    display: flex;
+    gap: 15px;    /* 아이콘 사이의 간격 */
+    z-index: 106;
+}
+
+.sidebar-sns {
+    position: fixed;
+    bottom: 80px; /* 카피라이트위에 오도록 높이 지정 */
+    left: 30px;
+    display: flex;
+    gap: 10px;    /* 아이콘 사이의 간격 */
+    z-index: 106;
+}
+
+.sidebar-sns a {
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* SNS 아이콘 크기 제어 */
+.sidebar-sns img {
+    width: 25px; 
+    height: 25px;
+    object-fit: contain;
+    display: block;
+}
+
+/* 데스크톱 화면일 때 좌측 LNB 바닥에 카피라이트 강제 고정 */
+.copyright {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 180px;
+    z-index: 105;
+    font-size: 0.75rem;
+    color: #ccc;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* 2. 우측 메인 콘텐츠 영역 (상세페이지 스타일) */
+.content-area {
+    margin-left: 240px;
+    flex: 1;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.project-detail-section {
+    padding: 50px 60px;
+    max-width: 1000px; /* 상세글 가독성을 위해 본문 최대 너비 제한 */
+}
+
+.section-tag {
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    color: #000;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* 프로젝트 타이틀 구역 스타일 */
+.detail-header h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.project-meta {
+    color: #999;
+    font-size: 0.85rem;
+    margin-bottom: 40px;
+}
+
+/* 이미지 및 본문 서술 스타일 */
+.detail-img-placeholder {
+    width: 100%;
+    height: auto;
+    background-color: #f5f5f5;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222222;
+}
+
+.detail-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #111;
+    margin-top: 30px;
+}
+
+.detail-content p {
+    margin-bottom: 40px;
+    color: #333333;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    word-break: keep-all;
+}
+
+/* 3개 이미지 가로 정렬 */
+.work-container {
+  display: flex;
+  gap: 20px;        
+  justify-content: center;
+  padding: 20px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 기본 카드 스타일 */
+.work-card {
+  flex: 1;
+  height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #E5E5E5
+}
+
+.work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* 비율 깨짐 없이 가로세로 꽉 채움 */
+  transition: transform 0.3s ease;
+}
+
+
+/*  핵심: 클릭 시 나타나는 오버레이 및 확대 효과 */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* 85% 투명도의 검은 배경 */
+  z-index: 9999;                         /* 가장 최상단에 배치 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 부드러운 페이드인 효과를 위한 세팅 */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* [핵심] 이미지를 클릭하여 URL 주소창에 ID(#img1 등)가 들어가 활성화되었을 때 */
+.modal-overlay:target {
+  opacity: 1;
+  pointer-events: auto; /* 마우스 클릭 및 조작 가능하게 변경 */
+}
+
+/* 오버레이 창 내부에서 크게 뜰 이미지 */
+.modal-content {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  
+  /* 나타날 때 중심에서 커지는 연출 */
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 오버레이가 활성화되면 이미지 크기를 원래 크기(1)로 복원하며 확대 효과 */
+.modal-overlay:target .modal-content {
+  transform: scale(1);
+}
+
+/* 이미지 바깥(어두운 배경 영역)을 클릭하면 확대 상태가 꺼지도록 투명한 링크 배치 */
+.close-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-out;     /* 마우스 커서를 축소 돋보기 모양으로 */
+  z-index: -1;          /* 이미지 글자나 뒤로 숨겨 배경만 클릭되도록 조절 */
+}
+
+
+/* 목록으로 돌아가기 버튼 스타일 */
+.back-to-list-btn {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #999999;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+/* 마우스를 올렸을 때 왼쪽으로 살짝 움직이는 효과 */
+.back-to-list-btn:hover {
+    color: #111111;
+    transform: translateX(-4px); 
+}
+
+/* 3. 완벽하게 교정된 모바일/태블릿 반응형 레이아웃 처리 */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 40px 20px 25px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+    }
+    
+    .menu {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 5px;
+        gap: 20px;
+    }
+    
+    .content-area {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .project-detail-section {
+        padding: 40px 20px;
+    }
+    
+    .logo {
+        margin-bottom: 15px !important;
+        text-align: center;
+    }
+
+
+        .mobile-footer {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-sns {
+        position: static;
+        justify-content: center;
+    }
+
+    /* 모바일 화면일 때 데스크톱 고정을 풀고 본문 최하단 중앙에 안착 */
+    .copyright {
+        position: relative !important; 
+        bottom: auto !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 20px auto 0 auto !important; 
+        text-align: center !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        border-top: 1px solid #f0f0f0 !important; 
+    }
+} 
+
+
+/*  모바일 환경 (화면 폭 768px 이하) 스와이프 설정 */
+@media (max-width: 768px) {
+  /* 1. 카드를 감싸는 부모 박스에 가로 스크롤 생성 */
+  .work-container {
+    display: flex;
+    justify-content: flex-start; /* 모바일에서는 좌측 정렬 */
+    gap: 16px;                   /* 카드 사이 간격 살짝 좁힘 */
+    padding: 20px;               /* 여백 조절 */
+    
+    overflow-x: auto;            /* 가로 스크롤(스와이프) 활성화 */
+    scroll-snap-type: x mandatory; /* 스와이프 시 카드가 착착 걸리게 자석 효과 */
+    -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 지원 */
+  }
+
+  /* 2. 각 카드가 좁은 화면에서도 찌그러지지 않도록 고정폭 설정 */
+  .work-card {
+    flex: 0 0 280px;             /* 줄어들지 않고(0) 늘어나지 않으며(0) 가로 280px 고정 */
+    height: 200px;               /* 모바일 화면에 맞춰 세로 길이를 더 줄임 */
+    scroll-snap-align: center;   /* 스와이프 후 카드가 화면 중앙에 멈추도록 설정 */
+  }
+
+  /* 모바일용 스크롤바 숨기기 (디자인을 깔끔하게 유지) */
+  .work-container::-webkit-scrollbar {
+    display: none; 
+  }
+}
