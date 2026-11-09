@@ -4,7 +4,7 @@
 
 복잡한 정보와 업무 흐름을 사용자 관점에서 정리하는 UI/UX 디자이너 이수진의 포트폴리오입니다. B2B SaaS, 대시보드와 데이터 시각화, 관리자 도구, 서비스 UI, 그래픽 디자인 작업을 소개합니다.
 
-![태양광 모니터링 대시보드 디자인](images/Dashboard_Data_Visualization.png)
+![태양광 모니터링 대시보드 디자인](images/README_main.png)
 
 ## 사이트 구성
 
