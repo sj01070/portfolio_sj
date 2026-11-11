@@ -688,7 +688,7 @@ body {
         width: 100%;
         max-width: 100%;
         height: auto;
-        padding: 40px 20px !important;
+        padding: 40px 0px !important;
     }
 
     .contact-scroll-track {

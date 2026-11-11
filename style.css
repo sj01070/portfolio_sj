@@ -563,7 +563,7 @@ body {
     /* 메인 히어로 배너 반응형 - 세로 배치 및 여백 조정 */
     .main-banner {
         flex-direction: column-reverse; 
-        padding: 40px 20px;
+        padding: 40px 0px;
         gap: 30px;
     }
 
@@ -577,10 +577,10 @@ body {
 
     /* 배너 텍스트 독립 제어 - 웹 버전 간섭 제거 */
     .banner-content {
-        margin-right: 0 !important;   
-        width: 100% !important;       
+       margin-right: 0 !important;   
+       width: 100% !important;       
        text-align: center;
-        margin-top: 15px !important; /* 모바일 전용 상단 여백 */
+       margin-top: 15px !important; /* 모바일 전용 상단 여백 */
 
     }
 
@@ -670,13 +670,13 @@ body {
         row-gap: 35px;
     }
     .work-section {
-        padding: 40px 20px;
+        padding: 40px 0px;
     }
 }
 
 /* 모바일: AREAS OF EXPERTISE와 SELECTED WORKS 정렬 통일 */
 @media (max-width: 600px) {
     .tools-section {
-        padding: 40px 20px;
+        padding: 40px 0px;
     }
 }
